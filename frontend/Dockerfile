@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-COPY dist/traveleef-app/browser /usr/share/nginx/html
+COPY traveleef-app/dist/traveleef-app/browser /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
