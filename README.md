@@ -2,8 +2,7 @@
 
 # Guide d'utilisatation 
 
-# Prérequis : voir le pdf [Guide d'installation](Guide d'installation.pdf)
-
+# Prérequis : voir [Guide d'installation](Guide%20d'installation.pdf)
 - Node.js installé (version LTS recommandée)
 - Npm (gestionnaire de paquet Node, inclut avec Node.js)
 - Git
