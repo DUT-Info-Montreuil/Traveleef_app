@@ -8,13 +8,13 @@
 - Npm (gestionnaire de paquet Node, inclut avec Node.js)
 - Git
 - Docker (version LTS recommandée)
-- VsCode (éditeur de code) ou IDE (Environnement de développement) comme Webstorm (pour codé sur le web) et Pycharm (pour codé en python) (optionnel)
+- VsCode (éditeur de code) ou IDE (Environnement de développement) comme Webstorm (pour coder sur le web) et Pycharm (pour coder en python) (optionnel)
 
 # Installation/Initialisation du projet : 
 
 1. Cloner le projet avec la commande : git clone ```<LIEN_DU_REPO_GITHUB>```
 2. Accéder au dossier du projet "Traveleef_app"
-3. Ouvrir un terminal sur le même chemin que le dossier contenant le frontend Angular ```cd Traveleef_app/frontend/traveleef-app```. Puis effectuée les commandes suivantes : ```npm install``` pour installé les dépendances Node, puis ```ng build``` pour construire l'application.
+3. Ouvrir un terminal sur le même chemin que le dossier contenant le frontend Angular ```cd Traveleef_app/frontend/traveleef-app```. Puis effectuer les commandes suivantes : ```npm install``` pour installer les dépendances Node, puis ```ng build``` pour construire l'application.
 4. Revenez au répertoire racine du projet "Traveleef_app" et exécutez la commande suivante dans le terminal pour démarrer le projet : ```docker compose up -d```.
 
 # Information(s) utilitaire(s) : 
