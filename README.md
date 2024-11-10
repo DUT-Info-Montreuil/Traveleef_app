@@ -19,6 +19,6 @@
 
 # Information utilitaire : 
 
-. Pour accéder à l'application côté frontend, ouvrez votre navigateur et rendez-vous à l'adresse suivante : http://localhost:4200
-. Le backend n'est pas directement accessible via le navigateur pour des raisons de sécurité. Toutefois, si vous souhaitez y accéder, vous pouvez configurer un port dans le fichier docker-compose.yml du backend afin de permettre un accès externe.
-. La base de donnée est accessible depuis le terminal en utilisant la commande suivante : ```docker exec -it <ID_conteneur ou nom conteneur postgresql> psql -U <NOM_UTILISATEUR> -d <BASE_DE_DONNEE>```. Cela vous permet de vous connecter au conteneur PostgreSQL pour interagir avec la base de données.
+- Pour accéder à l'application côté frontend, ouvrez votre navigateur et rendez-vous à l'adresse suivante : http://localhost:4200
+- Le backend n'est pas directement accessible via le navigateur pour des raisons de sécurité. Toutefois, si vous souhaitez y accéder, vous pouvez configurer un port dans le fichier docker-compose.yml du backend afin de permettre un accès externe.
+- La base de donnée est accessible depuis le terminal en utilisant la commande suivante : ```docker exec -it <ID_conteneur ou nom conteneur postgresql> psql -U <NOM_UTILISATEUR> -d <BASE_DE_DONNEE>```. Cela vous permet de vous connecter au conteneur PostgreSQL pour interagir avec la base de données.
