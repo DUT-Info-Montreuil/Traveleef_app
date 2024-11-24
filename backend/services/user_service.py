@@ -1,4 +1,5 @@
 import bcrypt
+from flask_jwt_extended import create_access_token
 
 from domain.repositories.user_repository import UserRepository
 from domain.entities.user import User
@@ -22,3 +23,14 @@ class UserService:
             role=dto['role']
         )
         return self.user_repository.create_user(user)
+
+    def login_user(self, mail: str, password: str):
+        user = self.user_repository.find_user_by_email(mail)
+        if not user:
+            raise Exception("Invalid email or password")
+
+        if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
+            raise Exception("Invalid email or password")
+
+        access_token = create_access_token(identity=user.id)
+        return {"access_token": access_token, "role": user.role}
