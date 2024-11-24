@@ -4,3 +4,4 @@ flask-expects-json
 python-dotenv
 flask-jwt-extended
 psycopg[binary]
+bcrypt
