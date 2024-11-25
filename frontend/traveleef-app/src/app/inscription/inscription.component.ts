@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../layout/footer/footer.component';
 import { HeaderComponent } from '../layout/header/header.component';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -11,7 +12,7 @@ import { HeaderComponent } from '../layout/header/header.component';
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule, FooterComponent,HeaderComponent],
+  imports: [CommonModule,ReactiveFormsModule, FooterComponent,HeaderComponent,RouterLink],
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent {
@@ -27,7 +28,6 @@ export class InscriptionComponent {
   }
 
   
-
 
 
   passwordMatchValidator(form: FormGroup) {
