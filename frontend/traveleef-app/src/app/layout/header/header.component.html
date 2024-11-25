@@ -1,0 +1,19 @@
+<header class="header-container">
+  <!-- Logo à gauche -->
+  <div class="logo">
+    <img src="assets/LogoTexte_Traveleef_N.png" alt="Traveleef Logo" class="logo-img">
+  </div>
+
+
+  <!-- Boutons à droite (déconnecté) -->
+  <div class="buttons-container" *ngIf="!isLoggedIn">
+    <button class="btn-primary">S'inscrire</button>
+    <button class="btn-primary">Se connecter</button>
+  </div>
+
+  <!-- Informations de l'utilisateur (connecté) -->
+  <div class="user-info" *ngIf="isLoggedIn">
+    <span class="user-name">{{ userName }}</span>
+    <button class="btn-primary">Déconnexion</button>
+  </div>
+</header>
