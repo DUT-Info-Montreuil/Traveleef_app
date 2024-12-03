@@ -12,10 +12,10 @@
         <a routerLink="/inscription" class="link">Inscrivez-vous ici !</a>
       </p>
       <div class="form-box">
-        <input type="text" placeholder="Votre nom d'utilisateur" class="input-field" />
-        <input type="password" placeholder="Votre mot de passe" class="input-field" />
+        <input type="text" [(ngModel)]="credentials.email" placeholder="Votre email" class="input-field" />
+        <input type="password" [(ngModel)]="credentials.mot_de_passe" placeholder="Votre mot de passe" class="input-field" />
         <a href="#" class="forgot-password">Mot de passe oublié ?</a>
-        <button class="submit-button">Connexion</button>
+        <button class="submit-button" (click)="seConnecter()">Connexion</button>
       </div>
     </div>
 

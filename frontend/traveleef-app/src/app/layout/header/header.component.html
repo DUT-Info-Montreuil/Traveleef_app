@@ -6,14 +6,16 @@
 
 
   <!-- Boutons à droite (déconnecté) -->
+  <!-- Boutons pour les utilisateurs non connectés -->
   <div class="buttons-container" *ngIf="!isLoggedIn">
-    <button class="btn-primary">S'inscrire</button>
-    <button class="btn-primary">Se connecter</button>
+    <button class="btn-primary" routerLink="/inscription">S'inscrire</button>
+    <button class="btn-primary" routerLink="/connexion">Se connecter</button>
   </div>
 
-  <!-- Informations de l'utilisateur (connecté) -->
+  <!-- Informations utilisateur pour les utilisateurs connectés -->
   <div class="user-info" *ngIf="isLoggedIn">
     <span class="user-name">{{ userName }}</span>
-    <button class="btn-primary">Déconnexion</button>
+    <button class="btn-primary" (click)="deconnexion()">Déconnexion</button>
   </div>
+
 </header>
