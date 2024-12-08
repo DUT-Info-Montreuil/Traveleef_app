@@ -1,47 +1,48 @@
-<app-header></app-header>
-<div class="register-page">
-  <!-- Section de gauche : Formulaire d'inscription -->
-  <div class="form-container">
-    <div class="logo-container">
-      <img src="assets/logo.png" alt="Logo" class="logo">
+<div class="register-page container-fluid">
+  <div class="row justify-content-center align-items-center h-100">
+    <!-- Section de gauche : Formulaire d'inscription -->
+    <div class="form-container col-12 col-md-6 col-lg-5">
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="Logo" class="logo">
+      </div>
+
+      <h1 class="title">Inscription</h1>
+      <p class="login-link">
+        Vous avez déjà un compte ? <a routerLink="/connexion">Connectez-vous ici !</a>
+      </p>
+
+      <form [formGroup]="registrationForm" (click)="onSubmit()" class="form-box">
+        <div class="input-group">
+          <input type="text" formControlName="first_name" placeholder="Nom" class="input-field" />
+          <input type="text" formControlName="last_name" placeholder="Prénom" class="input-field" />
+        </div>
+        <input type="email" formControlName="email" placeholder="Adresse e-mail" class="input-field full-width" />
+        <input type="password" formControlName="password" placeholder="Votre mot de passe" class="input-field full-width" />
+        <input type="password" formControlName="confirmPassword" placeholder="Confirmer le mot de passe" class="input-field full-width" />
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" />
+          <label for="terms">Accepter les <a href="#">Termes & Conditions</a></label>
+        </div>
+
+        <!-- Bouton d'inscription -->
+        <div *ngIf="message" class="alert-message">{{ message }}</div>
+        <div class="register-button-container">
+          <button class="register-btn" type="submit">Inscription</button>
+        </div>
+      </form>
     </div>
 
-    <h1 class="title">Inscription</h1>
-    <p class="login-link">
-      Vous avez déjà un compte ? <a routerLink="/connexion">Connectez-vous ici !</a>
-    </p>
-
-    <form [formGroup]="registrationForm"  (click)="onSubmit()" class="form-box">
-      <div class="input-group">
-        <input type="text" formControlName="name" placeholder="Nom" class="input-field" />
+    <!-- Section de droite : Image et texte de bienvenue -->
+    <div class="welcome-section col-12 col-md-6 d-flex align-items-center">
+      <div class="welcome-text">
+        <p>
+          <span style="font-size: 2rem; color: #6320EE;">&#10077;</span>
+          <strong>Bienvenue chez</strong> <span style="color: #6320EE;"><strong>Traveleef</strong></span>.
+          <strong>Traveleef</strong> est une solution qui vous permet d'optimiser chaque aventure tout en
+          minimisant votre <span style="color: #6320EE;"><strong>empreinte carbone</strong></span>.
+        </p>
       </div>
-      <input type="email" formControlName="email" placeholder="Adresse e-mail" class="input-field full-width" />
-      <input type="password" formControlName="password" placeholder="Votre mot de passe" class="input-field full-width" />
-      <input type="password" formControlName="confirmPassword" placeholder="Confirmer le mot de passe" class="input-field full-width" />
-
-      <div class="checkbox-group">
-        <input type="checkbox" id="terms" />
-        <label for="terms">Accepter les <a href="#">Termes & Conditions</a></label>
-      </div>
-
-      <!-- Bouton d'inscription -->
-      <div *ngIf="message" class="alert-message">{{ message }}</div>
-      <div class="register-button-container">
-        <button class="register-btn" type="submit">Inscription</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Section de droite : Image et texte de bienvenue -->
-  <div class="welcome-section">
-    <div class="welcome-text">
-      <p>
-        <span style="font-size: 2rem; color: #6320EE;">&#10077;</span>
-        <strong>Bienvenue chez</strong> <span style="color: #6320EE;"><strong>Traveleef</strong></span>. 
-        <strong>Traveleef</strong> est une solution qui vous permet d'optimiser chaque aventure tout en 
-        minimisant votre <span style="color: #6320EE;"><strong>empreinte carbone</strong></span>.
-      </p>
     </div>
   </div>
 </div>
-<app-footer></app-footer>

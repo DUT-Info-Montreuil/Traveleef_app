@@ -1,14 +1,10 @@
 /* Conteneur principal */
 .header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  max-width: 1440px;
-  height: 110px;
-  padding: 0 40px;
+  padding: 2% 3%;
   background-color: #C9DDB0;
   border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Logo */
@@ -18,24 +14,24 @@
 }
 
 .logo-img {
-  width: 180px; /* Taille ajustée du logo */
+  width: 150px; /* Taille ajustée pour petits écrans */
   height: auto;
 }
 
 /* Conteneur des boutons */
-.buttons-container {
+.buttons-container,
+.user-info {
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-left: auto; /* Aligne les boutons à droite */
+  gap: 15px;
 }
 
-/* Style des boutons */
+/* Boutons */
 .btn-primary {
-  padding: 10px 20px;
+  padding: 8px 16px;
   background-color: #4CD0BD;
   color: black;
-  font-size: 18px;
+  font-size: 14px; /* Police réduite pour petits écrans */
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   border: none;
@@ -45,11 +41,25 @@
   transition: background-color 0.3s;
 }
 
-/* Effet hover sur les boutons */
 .btn-primary:hover {
   background-color: #3bb9a3;
 }
 
-.user-name{
-  margin-right: 10px;
+.user-name {
+  font-size: 14px;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  /* Aligner les boutons en dessous du logo sur mobile */
+  .buttons-container,
+  .user-info {
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .logo-img {
+    width: 100px;
+  }
 }

@@ -7,6 +7,6 @@ import { ConnexionComponent } from './connexion/connexion.component';
 
 export const routes: Routes = [
     {path : 'inscription', component : InscriptionComponent},
-    {path : 'connexion', component : ConnexionComponent}
-
+    {path : 'connexion', component : ConnexionComponent},
+    { path: '', redirectTo: '/connexion', pathMatch: 'full' }, // Redirection par défaut
 ];

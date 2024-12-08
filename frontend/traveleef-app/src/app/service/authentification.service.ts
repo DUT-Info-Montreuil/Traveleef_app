@@ -16,8 +16,8 @@ export class AuthService {
    * @param utilisateur Contient email et mot_de_passe
    * @returns Observable avec la réponse du backend
    */
-  inscription(utilisateur: { email: string; mot_de_passe: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, utilisateur).pipe(
+  inscription(utilisateur: { first_name: string; last_name: string; email: string; mot_de_passe: string; role: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register/`, utilisateur).pipe(
       catchError(this.handleError)
     );
   }
@@ -28,7 +28,7 @@ export class AuthService {
    * @returns Observable avec token JWT et rôle utilisateur
    */
   connexion(credentials: { email: string; mot_de_passe: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+    return this.http.post(`${this.apiUrl}/login/`, credentials).pipe(
       catchError(this.handleError)
     );
   }
