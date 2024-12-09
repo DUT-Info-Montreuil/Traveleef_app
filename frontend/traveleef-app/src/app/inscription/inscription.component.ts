@@ -38,6 +38,7 @@ onSubmit() {
   console.log("test");
 
   if (this.registrationForm.valid) {
+    console.log('if');
     const formValue = this.registrationForm.value;
 
     const utilisateur = {
@@ -48,18 +49,23 @@ onSubmit() {
       role: 'user'  // Prendre le rôle sélectionné ou 'user' par défaut
     };
     
+    console.log(utilisateur);
 
     this.authService.inscription(utilisateur).subscribe({
+
       next: (response) => {
+        console.log(response);
         this.message = 'Inscription réussie !';
         setTimeout(() => this.router.navigate(['/connexion']), 3000); // Rediriger après 3 secondes
       },
       error: (erreur) => {
+        console.log(erreur);
         this.message = 'Une erreur est survenue lors de l\'inscription.';
         console.error('Erreur lors de l\'inscription :', erreur);
       }
     });
   } else {
+    console.log('else');
     this.message = 'Veuillez remplir correctement le formulaire.';
   }
 }
