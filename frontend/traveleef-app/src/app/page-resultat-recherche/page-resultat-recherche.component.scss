@@ -34,6 +34,30 @@
         border-radius: 5px;
         border: 1px solid #ccc;
       }
+
+      .checkbox-group {
+        display: flex;
+        flex-direction: column; // Chaque checkbox-item sur une ligne distincte
+        gap: 10px; // Espacement entre les items
+
+        .checkbox-item {
+          display: flex; // Affiche les éléments côte à côte
+          align-items: center; // Aligne verticalement les éléments
+          gap: 10px; // Espacement horizontal entre la checkbox et le label
+
+          input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+          }
+
+          label {
+            display: flex;
+            align-items: center;
+            font-size: 1rem; // Taille des labels
+            gap: 5px; // Espacement entre le texte et l'icône
+          }
+        }
+      }
     }
   }
 
@@ -82,7 +106,7 @@
         padding: 10px;
 
         img {
-          width: 150px;
+          width: 200px;
           height: auto;
           margin-right: 20px;
           border-radius: 5px;

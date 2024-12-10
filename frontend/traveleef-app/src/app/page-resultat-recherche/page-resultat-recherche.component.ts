@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule pour ngModel
 
 @Component({
   selector: 'app-page-resultat-recherche',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Inclure FormsModule ici
+  imports: [CommonModule, FormsModule, NgOptimizedImage], // Inclure FormsModule ici
   templateUrl: './page-resultat-recherche.component.html',
   styleUrls: ['./page-resultat-recherche.component.scss']
 })
@@ -19,7 +19,7 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '2.93 g de CO2 par km',
       duration: 300,
       travelClass: 'Classe économique',
-      image: 'assets/madrid1.jpg',
+      image: 'images/Logo_Traveleef_green.png',
     },
     {
       destination: 'Madrid',
@@ -28,7 +28,7 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '188 g de CO2 par km',
       duration: 120,
       travelClass: 'Classe business',
-      image: 'assets/madrid2.jpg',
+      image: 'images/Logo_Traveleef_green.png',
     },
     {
       destination: 'Madrid',
@@ -37,7 +37,7 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '218 g de CO2 par km',
       duration: 480,
       travelClass: 'Classe économique',
-      image: 'assets/madrid3.jpg',
+      image: 'images/Logo_Traveleef_green.png',
     },
     {
       destination: 'Madrid',
@@ -46,7 +46,7 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '100 g de CO2 par km',
       duration: 400,
       travelClass: 'Classe économique',
-      image: 'assets/madrid4.jpg',
+      image: 'images/Logo_Traveleef_green.png',
     },
     {
       destination: 'Madrid',
@@ -55,7 +55,7 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '300 g de CO2 par km',
       duration: 600,
       travelClass: 'Classe business',
-      image: 'assets/madrid5.jpg',
+      image: 'images/Logo_Traveleef_green.png',
     },
   ];
 
