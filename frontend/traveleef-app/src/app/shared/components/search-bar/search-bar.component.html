@@ -1,11 +1,26 @@
 <div class="container py-4 d-flex justify-content-center">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
   <div class="search-bar p-4 rounded d-flex align-items-center" style="gap: 10px; width: auto; flex-wrap: nowrap; justify-content: center;">
 
     <div class="input-container" style="position: relative; width: max-content;">
       <input
         type="text"
         class="form-control border-0 fst-italic shadow"
-        placeholder="Saisissez votre recherche..."
+        formControlName="departureId"
+        placeholder="Lieu de départ"
+        style="max-width: 250px; padding-left: 40px;"
+      />
+      <i class="bi bi-luggage-fill"
+         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #000;">
+      </i>
+    </div>
+
+    <div class="input-container" style="position: relative; width: max-content;">
+      <input
+        type="text"
+        class="form-control border-0 fst-italic shadow"
+        formControlName="arrivalId"
+        placeholder="Lieu d'arrivée"
         style="max-width: 250px; padding-left: 40px;"
       />
       <i class="bi bi-luggage-fill"
@@ -15,10 +30,21 @@
 
     <div class="d-flex flex-column mb-0">
       <div class="input-group mb-2">
-        <input type="date" class="form-control border-0 shadow" placeholder="Date aller" style="width: 160px;" />
+        <input type="date" class="form-control border-0 shadow" formControlName="outboundDate" placeholder="Date aller" style="width: 160px;" />
       </div>
       <div class="input-group">
-        <input type="date" class="form-control border-0 shadow" placeholder="Date retour" style="width: 160px;" />
+        <input type="date" class="form-control border-0 shadow" formControlName="returnDate" placeholder="Date retour" style="width: 160px;" />
+      </div>
+    </div>
+
+    <div class="d-flex flex-column mb-0">
+      <div class="form-check mb-2">
+        <input class="form-check-input shadow" type="radio" name="tripType" formControlName="tripType" id="oneWay" value="oneWay" />
+        <label class="form-check-label" for="oneWay">Aller simple</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input shadow" type="radio" name="tripType" formControlName="tripType" id="roundTrip" value="roundTrip" />
+        <label class="form-check-label" for="roundTrip">Aller retour</label>
       </div>
     </div>
 
@@ -30,6 +56,7 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
         style="padding-left: 2rem;"
+        (click)="$event.stopPropagation()"
       >
         <i
           class="bi bi-person-add"
@@ -107,19 +134,9 @@
       </ul>
     </div>
 
-    <div class="d-flex flex-column mb-0">
-      <div class="form-check mb-2">
-        <input class="form-check-input shadow" type="radio" name="tripType" id="oneWay" value="oneWay" />
-        <label class="form-check-label" for="oneWay">Aller simple</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input shadow" type="radio" name="tripType" id="roundTrip" value="roundTrip" />
-        <label class="form-check-label" for="roundTrip">Aller retour</label>
-      </div>
-    </div>
-
     <div>
-      <button class="btn btn-primary text-dark fw-bold">Rechercher</button>
+      <button class="btn btn-primary text-dark fw-bold" [disabled]="searchForm.invalid">Rechercher</button>
     </div>
   </div>
+  </form>
 </div>
