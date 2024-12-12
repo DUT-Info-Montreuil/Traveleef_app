@@ -21,17 +21,18 @@ export class InscriptionComponent {
     last_name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', Validators.required],
+    //confirmPassword: ['', Validators.required],
     role: ['user']  // Par défaut, l'utilisateur est un "user"
-  }, { validator: this.passwordMatchValidator });
+  },
+  );
 }
 
 // Valider la correspondance des mots de passe
-passwordMatchValidator(form: FormGroup) {
+/*passwordMatchValidator(form: FormGroup) {
   return form.get('password')?.value === form.get('confirmPassword')?.value
     ? null
     : { passwordMismatch: true };
-}
+}*/
 
 // Soumettre les données d'inscription
 onSubmit() {
@@ -45,7 +46,7 @@ onSubmit() {
       first_name: formValue.first_name,
       last_name: formValue.last_name,
       email: formValue.email,
-      mot_de_passe: formValue.password,
+      password: formValue.password,
       role: 'user'  // Prendre le rôle sélectionné ou 'user' par défaut
     };
     

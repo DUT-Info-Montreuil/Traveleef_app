@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://api/auth'; // Modifier selon l'URL de votre backend
+  private apiUrl = 'http://localhost:5000/auth'; // Modifier selon l'URL de votre backend
 
   constructor(private http: HttpClient) {}
 
@@ -16,8 +16,8 @@ export class AuthService {
    * @param utilisateur Contient email et mot_de_passe
    * @returns Observable avec la réponse du backend
    */
-  inscription(utilisateur: { first_name: string; last_name: string; email: string; mot_de_passe: string; role: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register/`, utilisateur).pipe(
+  inscription(utilisateur: { first_name: string; last_name: string; email: string; password : string; role: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, utilisateur).pipe(
       catchError(this.handleError)
     );
   }
@@ -27,8 +27,8 @@ export class AuthService {
    * @param credentials Contient email et mot_de_passe
    * @returns Observable avec token JWT et rôle utilisateur
    */
-  connexion(credentials: { email: string; mot_de_passe: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login/`, credentials).pipe(
+  connexion(credentials: { email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
       catchError(this.handleError)
     );
   }

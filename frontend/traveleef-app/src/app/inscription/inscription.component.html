@@ -11,7 +11,7 @@
         Vous avez déjà un compte ? <a routerLink="/connexion">Connectez-vous ici !</a>
       </p>
 
-      <form [formGroup]="registrationForm" (click)="onSubmit()" class="form-box">
+      <form [formGroup]="registrationForm" (submit)="onSubmit()" class="form-box">
         <div class="input-group">
           <input type="text" formControlName="first_name" placeholder="Nom" class="input-field" />
           <input type="text" formControlName="last_name" placeholder="Prénom" class="input-field" />

@@ -15,15 +15,23 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class ConnexionComponent {
-  credentials = { email: '', mot_de_passe: '' };
+  credentials = { email: '', password: '' };
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  
   seConnecter(): void {
+    //console.log('Données envoyées :', this.credentials);
+
+    if (!this.credentials.email || !this.credentials.password) {
+      console.error('Email et mot de passe sont requis');
+      return;
+    }
+
     this.authService.connexion(this.credentials).subscribe({
       next: (reponse) => {
         this.authService.stockerToken(reponse.token_acces);
-        this.router.navigate(['/dashboard']); // Redirection après connexion réussie
+      //  this.router.navigate(['/dashboard']); // Redirection après connexion réussie
       },
       error: (erreur) => {
         console.error('Erreur de connexion :', erreur);
