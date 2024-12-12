@@ -1,148 +1,130 @@
+/* Conteneur principal */
+.container-fluid {
+  padding: 0;
+}
 
-.container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    background: white;
-  }
-  
-  .left-panel {
-    width: 40%;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: white;
-  }
-  
-  .right-panel {
-    width: 60%;
-    background: linear-gradient(0deg, #b9c9aa 0%, #b9c9aa 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
-  
-  .logo-container {
-    width: 80px;
-    height: 80px;
-    padding: 5px;
-    background: #C9DDB0;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Image du logo */
-  .logo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ajuste l'image pour remplir le conteneur */
-    border-radius: 40%; /* Rend l'image circulaire comme le conteneur */
-    padding: 3px;
-  }
-  
-  .title {
-    font-size: 60px;
-    font-family: 'More Sugar', sans-serif;
-    color: black;
-    margin: 20px 0;
-  }
-  
-  .subtitle {
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .subtitle .link {
-    color: #2ca9c6;
-    text-decoration: underline;
-  }
-  
-  .form-box {
-    width: 80%;
-    background: #c9ddb0;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0px 4px 4px rgba(183, 203, 156, 0.73);
-  }
-  
-  .input-field {
-    width: 100%;
-    height: 40px;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(183, 203, 156, 0.73);
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .forgot-password {
-    display: block;
-    text-align: center;
-    color: #2ca9c6;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    margin-top: 10px;
-    text-decoration: underline;
-  }
-  
-  .submit-button {
-    width: 100%;
-    height: 50px;
-    background: #2ca9c6;
-    color: black;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  .right-panel .welcome-box {
-    width: 70%;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .right-panel .highlight {
-    color: #6320ee;
-    font-weight: bold;
-  }
-  
+/* Section de gauche : Formulaire de connexion */
+.left-panel {
+  background: white;
+  padding: 20px;
+}
 
-/* Section de bienvenue */
+.logo-container {
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+  background: #C9DDB0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  font-size: 36px;
+  font-family: 'More Sugar', sans-serif;
+  color: black;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.subtitle .link {
+  color: #2ca9c6;
+  text-decoration: underline;
+}
+
+.form-box {
+  width: 100%;
+  background: #c9ddb0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0px 4px 4px rgba(183, 203, 156, 0.73);
+}
+
+.input-field {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(183, 203, 156, 0.73);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.forgot-password {
+  display: block;
+  text-align: center;
+  color: #2ca9c6;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.submit-button {
+  width: 100%;
+  height: 50px;
+  background: #2ca9c6;
+  color: black;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Section de droite : Image et texte de bienvenue */
 .welcome-section {
-    flex: 1;
-    background-image: linear-gradient(rgba(185, 201, 170, 0.8), rgba(185, 201, 170, 0.8)), url('voyage.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+  background-image: linear-gradient(rgba(185, 201, 170, 0.8), rgba(185, 201, 170, 0.8)), url('voyage.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  height: 100vh;
+}
+
+.welcome-text {
+  background: rgba(185, 201, 170, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  color: black;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
   }
-  
-  
+
+  .submit-button {
+    font-size: 16px;
+  }
+
   .welcome-text {
-    background: rgba(185, 201, 170, 0.5);
-    z-index: 2;
-    border-radius:10px;
-    padding: 20px;
-    border-radius: 5px;
-    color: black;
-    text-align: center;
-    font-size: 24px;
+    font-size: 16px;
   }
+
+
+  .left-panel {
+    padding: 20px;
+  }
+}

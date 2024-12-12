@@ -1,19 +1,20 @@
-<header class="header-container">
-  <!-- Logo à gauche -->
-  <div class="logo">
-    <img src="assets/LogoTexte_Traveleef_N.png" alt="Traveleef Logo" class="logo-img">
-  </div>
+<header class="header-container container-fluid">
+  <div class="row align-items-center justify-content-between">
+    <!-- Logo à gauche -->
+    <div class="logo col-6 col-md-4">
+      <img src="assets/LogoTexte_Traveleef_N.png" alt="Traveleef Logo" class="logo-img">
+    </div>
 
+    <!-- Boutons pour les utilisateurs non connectés -->
+    <div class="buttons-container col-6 col-md-4 text-end d-flex justify-content-end align-items-center gap-3" *ngIf="!isLoggedIn">
+      <button class="btn-primary" routerLink="/inscription">S'inscrire</button>
+      <button class="btn-primary" routerLink="/connexion">Se connecter</button>
+    </div>
 
-  <!-- Boutons à droite (déconnecté) -->
-  <div class="buttons-container" *ngIf="!isLoggedIn">
-    <button class="btn-primary">S'inscrire</button>
-    <button class="btn-primary">Se connecter</button>
-  </div>
-
-  <!-- Informations de l'utilisateur (connecté) -->
-  <div class="user-info" *ngIf="isLoggedIn">
-    <span class="user-name">{{ userName }}</span>
-    <button class="btn-primary">Déconnexion</button>
+    <!-- Informations utilisateur pour les utilisateurs connectés -->
+    <div class="user-info col-6 col-md-4 text-end d-flex justify-content-end align-items-center gap-3" *ngIf="isLoggedIn">
+      <span class="user-name">{{ userName }}</span>
+      <button class="btn-primary" (click)="deconnexion()">Déconnexion</button>
+    </div>
   </div>
 </header>

@@ -11,10 +11,10 @@ services:
   app:
     build: ./backend
     # Port temporaire
-    ports:
-      - "5000:5000"
     depends_on:
       - db
+    ports:
+      - "5000:5000"
     secrets:
       - db_password  
     networks: 

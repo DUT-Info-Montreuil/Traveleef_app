@@ -9,4 +9,5 @@ export const routes: Routes = [
     {path : 'inscription', component : InscriptionComponent},
     {path : 'connexion', component : ConnexionComponent},
     {path: 'results', component: PageResultatRechercheComponent},
+    { path: '', redirectTo: '/connexion', pathMatch: 'full' }, // Redirection par défaut
 ];
