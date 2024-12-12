@@ -1,0 +1,88 @@
+<div class="search-results-page">
+  <!-- Menu des filtres -->
+  <aside class="filters">
+    <h2>Filtres :</h2>
+
+    <!-- Filtre : Classe -->
+    <div class="filter-group">
+      <label for="class-select">Choisissez une classe</label>
+      <div class="custom-select">
+        <select id="class-select" [(ngModel)]="selectedClass">
+          <option>Toutes les classes</option>
+          <option>Classe économique</option>
+          <option>Classe business</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Filtre : Moyens de transport -->
+    <div class="filter-group">
+      <label>Moyen de transport :</label>
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input
+            type="checkbox"
+            id="avion"
+            (change)="toggleTransportFilter('Avion')"
+          />
+          <label for="avion">Avion <span class="icon">✈️</span></label>
+        </div>
+        <div class="checkbox-item">
+          <input
+            type="checkbox"
+            id="train"
+            (change)="toggleTransportFilter('Train')"
+          />
+          <label for="train">Train <span class="icon">🚆</span></label>
+        </div>
+        <div class="checkbox-item">
+          <input
+            type="checkbox"
+            id="bus"
+            (change)="toggleTransportFilter('Bus')"
+          />
+          <label for="bus">Bus / Car <span class="icon">🚌</span></label>
+        </div>
+        <div class="checkbox-item">
+          <input
+            type="checkbox"
+            id="covoiturage"
+            (change)="toggleTransportFilter('Covoiturage')"
+          />
+          <label for="covoiturage">Covoiturage <span class="icon">🚗</span></label>
+        </div>
+        <div class="checkbox-item">
+          <input
+            type="checkbox"
+            id="marin"
+            (change)="toggleTransportFilter('Marin')"
+          />
+          <label for="marin">Marin <span class="icon">⛴️</span></label>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Section des résultats -->
+  <main class="results">
+    <div class="tabs">
+      <button class="tab" (click)="sortBy('eco')">Les plus écolo</button>
+      <button class="tab" (click)="sortBy('price')">Les moins chers</button>
+      <button class="tab" (click)="sortBy('duration')">Les plus rapides</button>
+    </div>
+
+    <div class="result-list">
+      <div class="result-card" *ngFor="let result of getFilteredResults()">
+        <img [src]="result.image" [alt]="result.destination" />
+        <div class="result-info">
+          <h3>Voyage à {{ result.destination }}</h3>
+          <p>Prix : <strong>{{ result.price }} €</strong></p>
+          <p>Moyen de transport : {{ result.transport }}</p>
+          <p>Durée : <strong>{{ result.duration / 60 | number:'1.0-0' }} heures</strong></p>
+          <p>Classe : <strong>{{ result.travelClass }}</strong></p>
+          <p>Empreinte carbone : <strong>{{ result.carbonFootprint }}</strong></p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
