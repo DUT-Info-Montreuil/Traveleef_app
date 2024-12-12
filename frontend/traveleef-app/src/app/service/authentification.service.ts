@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError,BehaviorSubject,map } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:5000/auth'; // Modifier selon l'URL de votre backend
+  private isLoggedInSubject = new BehaviorSubject<boolean>(!!this.recupererToken());
+  isLoggedIn$ = this.isLoggedInSubject.asObservable(); // Observable pour suivre l'état de connexion
 
   constructor(private http: HttpClient) {}
 
@@ -29,7 +31,12 @@ export class AuthService {
    */
   connexion(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError),
+      map((response: any) => {
+        this.stockerToken(response.access_token);
+        this.isLoggedInSubject.next(true); // Met à jour l'état après connexion
+        return response;
+      })
     );
   }
 
@@ -39,6 +46,7 @@ export class AuthService {
    */
   stockerToken(token: string): void {
     localStorage.setItem('token_acces', token);
+    console.log('Token stocké avec succès');
   }
 
   /**
@@ -62,6 +70,7 @@ export class AuthService {
    */
   deconnexion(): void {
     localStorage.removeItem('token_acces');
+    this.isLoggedInSubject.next(false);
   }
 
   /**

@@ -16,13 +16,14 @@ export class HeaderComponent {
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    // Vérifiez si l'utilisateur est connecté
-    this.isLoggedIn = this.authService.estConnecte();
-    if (this.isLoggedIn) {
-      // Mettre à jour le nom de l'utilisateur si nécessaire
-      this.userName = 'Utilisateur'; // Remplacez par une logique dynamique si disponible
-    }
+ ngOnInit(): void {
+    // S'abonner à l'état de connexion
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+      if (loggedIn) {
+        this.userName = 'Utilisateur'; // Chargez dynamiquement le nom si nécessaire
+      }
+    });
   }
 
   deconnexion(): void {

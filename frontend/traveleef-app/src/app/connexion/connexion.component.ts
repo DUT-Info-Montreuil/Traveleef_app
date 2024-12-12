@@ -31,7 +31,8 @@ export class ConnexionComponent {
     this.authService.connexion(this.credentials).subscribe({
       next: (reponse) => {
         this.authService.stockerToken(reponse.token_acces);
-      //  this.router.navigate(['/dashboard']); // Redirection après connexion réussie
+        this.router.navigate(['/results']); // Redirection après connexion réussie
+        console.log('Redirection effectuée vers /results');
       },
       error: (erreur) => {
         console.error('Erreur de connexion :', erreur);
