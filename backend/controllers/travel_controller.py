@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
+import requests
 
 from services.travel_service import TravelService
-from shared.dto.mappers.travel_mapper import mapper_travel_to_dict
 
 travel_bp = Blueprint('travel_bp', __name__)
 
@@ -34,24 +34,34 @@ def get_all_travels():
         return jsonify({"message": str(e)}), 500
 
 
-@travel_bp.route('/search', methods=['GET'])
-def search_travels():
-    departure_location = request.args.get('departureLocation')
-    arrival_location = request.args.get('arrivalLocation')
-    travel_date = request.args.get('travelDate')
-    return_travel_date = request.args.get('returnTravelDate')
+@travel_bp.route('/search', methods=['POST'])
+def search_flights():
+    dto = request.json
 
-    if not departure_location or not arrival_location or not travel_date:
-        return jsonify({"message": "Les paramètres departureLocation, arrivalLocation et travelDate sont requis."}), 400
+    required_keys = ['departure_id', 'arrival_id', 'outbound_date', 'trip_type', 'adults', 'children', 'infants']
+    if not all(key in dto for key in required_keys):
+        return {"error": "Missing required fields"}, 400
 
-    try:
-        results = TravelService.search_travels(departure_location, arrival_location, travel_date, return_travel_date)
+    base_url = "https://serpapi.com/search.json"
+    params = {
+        'engine': 'google_flights',
+        'departure_id': dto['departure_id'],
+        'arrival_id': dto['arrival_id'],
+        'outbound_date': dto['outbound_date'],
+        'currency': "EUR",
+        'hl': 'fr',
+        'adults': dto['adults'],
+        'children': dto['children'],
+        'infants': dto['infants'],
+        'api_key': ''
+    }
 
-        if isinstance(results, dict) and "message" in results:
-            return jsonify(results), 404
+    if dto['trip_type'] == 'roundTrip' and 'return_date' in dto:
+        params['return_date'] = dto['return_date']
 
-        mapped_results = [mapper_travel_to_dict(travel) for travel in results]
-        return jsonify({"travels": mapped_results}), 200
+    response = requests.get(base_url, params=params)
 
-    except Exception as e:
-        return jsonify({"message": f"Une erreur s'est produite lors de la recherche : {str(e)}"}), 500
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {"error": f"API error: {response.json}"}, response.status_code

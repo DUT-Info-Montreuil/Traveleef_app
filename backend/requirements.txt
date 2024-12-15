@@ -7,3 +7,4 @@ psycopg[binary]
 bcrypt
 Flask-SQLAlchemy
 SQLAlchemy
+requests

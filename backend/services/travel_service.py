@@ -1,10 +1,4 @@
-from datetime import datetime
-from sqlalchemy import and_
-
 from sqlalchemy.exc import IntegrityError
-
-from domain.entities.segment import Segment
-from domain.entities.travel import Travel
 from domain.repositories.condition_repository import ConditionRepository
 from domain.repositories.emission_repository import EmissionRepository
 from domain.repositories.segment_repository import SegmentRepository
@@ -133,7 +127,8 @@ class TravelService:
                     travel_data['travelInfo'],
                     travel_data.get('partner_url', ''),
                     travel_data.get('priceOutbound', None),
-                    travel_data.get('priceRoundTrip', None)
+                    travel_data.get('priceRoundTrip', None),
+                    travel_data.get('travel_type')
                 )
 
                 EmissionRepository.create_emission(
@@ -185,36 +180,3 @@ class TravelService:
         except Exception as e:
             db.session.rollback()
             raise Exception(f"Une erreur est survenue lors de la création du voyage : {str(e)}") from e
-
-    @staticmethod
-    def search_travels(departure_location, arrival_location, travel_date, return_travel_date=None):
-        travel_date = datetime.strptime(travel_date, "%Y-%m-%d").date()
-
-        query = db.session.query(Travel).join(Segment).filter(
-            and_(
-                Segment.departure_location == departure_location,
-                Segment.arrival_location == arrival_location,
-                Segment.flight_date == travel_date,
-                Segment.segment_type == 'outbound'
-            )
-        )
-
-        if return_travel_date:
-            return_travel_date = datetime.strptime(return_travel_date, "%Y-%m-%d").date()
-            query = query.filter(
-                Travel.segments.any(
-                    and_(
-                        Segment.departure_location == arrival_location,
-                        Segment.arrival_location == departure_location,
-                        Segment.flight_date == return_travel_date,
-                        Segment.segment_type == 'return'
-                    )
-                )
-            )
-
-        results = query.all()
-
-        if not results:
-            return {"message": "Aucun voyage trouvé selon les critères spécifiés."}
-
-        return results

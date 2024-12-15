@@ -4,12 +4,13 @@ from infra.db.database import db
 
 class TravelRepository:
     @staticmethod
-    def create_travel(travel_info,  partner_url, price_outbound=None, price_round_trip=None):
+    def create_travel(travel_info,  partner_url, price_outbound=None, price_round_trip=None, travel_type=None):
         travel = Travel(
             travel_info=travel_info,
             partner_url=partner_url,
             price_outbound=price_outbound,
-            price_round_trip=price_round_trip
+            price_round_trip=price_round_trip,
+            travel_type=travel_type
         )
         db.session.add(travel)
         db.session.flush()
