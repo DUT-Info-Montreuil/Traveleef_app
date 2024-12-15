@@ -6,3 +6,4 @@ flask-jwt-extended
 psycopg[binary]
 bcrypt
 Flask-SQLAlchemy
+SQLAlchemy
