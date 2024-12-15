@@ -28,9 +28,15 @@ class TravelService:
             if not emissions or not segments:
                 continue
 
-            travel_details = {
+            price = travel.price_outbound
+            if travel.price_round_trip:
+                price = travel.price_round_trip
+
+        travel_details = {
                 "id": travel.id,
                 "travelInfo": travel.travel_info,
+                "partner_url": travel.partner_url,
+                "price": price,
                 "emissions": {
                     "aller": emissions.outbound_emission,
                     "retour": emissions.return_emission,
@@ -58,7 +64,7 @@ class TravelService:
                 "services": [service.service_text for service in services],
             }
 
-            all_travels_details.append(travel_details)
+        all_travels_details.append(travel_details)
 
         return all_travels_details
 
@@ -73,9 +79,15 @@ class TravelService:
         if not travel or not emissions or not segments:
             return {"error": "Travel or emissions or segments not found."}
 
+        price = travel.price_outbound
+        if travel.price_round_trip:
+            price = travel.price_round_trip
+
         return {
             "id": travel.id,
             "travelInfo": travel.travel_info,
+            "partner_url": travel.partner_url,
+            "price": price,
             "emissions": {
                 "aller": emissions.outbound_emission,
                 "retour": emissions.return_emission,
@@ -105,47 +117,54 @@ class TravelService:
 
     @staticmethod
     def create_travel(travel_data):
-
-        required_keys = ['travelInfo', 'emissions', 'aller', 'retour', 'conditions', 'services']
+        required_keys = ['travelInfo', 'emissions', 'aller', 'conditions', 'services']
         for key in required_keys:
             if key not in travel_data:
                 raise ValueError(f"Les données doivent contenir la clé '{key}'.")
 
         try:
             with db.session.begin():
-                travel = TravelRepository.create_travel(travel_data['travelInfo'])
+                travel = TravelRepository.create_travel(
+                    travel_data['travelInfo'],
+                    travel_data.get('partner_url', ''),
+                    travel_data.get('priceOutbound', None),
+                    travel_data.get('priceRoundTrip', None)
+                )
 
                 EmissionRepository.create_emission(
                     travel.id,
                     travel_data['emissions']['aller'],
-                    travel_data['emissions']['retour'],
+                    travel_data['emissions'].get('retour', None),
                     travel_data['emissions']['pourcentage']
                 )
 
-                for segment_data in travel_data['aller']:
-                    SegmentRepository.create_segment(
-                        travel.id,
-                        'outbound',
-                        segment_data['date'],
-                        segment_data['departureTime'],
-                        segment_data['departureLocation'],
-                        segment_data['arrivalTime'],
-                        segment_data['arrivalLocation'],
-                        segment_data['duration'],
-                        segment_data.get('logoUrl', None)
-                    )
-                for segment_data in travel_data['retour']:
-                    SegmentRepository.create_segment(
-                        travel.id,
-                        'return',
-                        segment_data['date'],
-                        segment_data['departureTime'],
-                        segment_data['departureLocation'],
-                        segment_data['arrivalTime'],
-                        segment_data['arrivalLocation'],
-                        segment_data['duration'],
-                        segment_data.get('logoUrl', None)
-                    )
+                if travel_data['aller']:
+                    for segment_data in travel_data['aller']:
+                        SegmentRepository.create_segment(
+                            travel.id,
+                            'outbound',
+                            segment_data['date'],
+                            segment_data['departureTime'],
+                            segment_data['departureLocation'],
+                            segment_data['arrivalTime'],
+                            segment_data['arrivalLocation'],
+                            segment_data['duration'],
+                            segment_data.get('logoUrl', None)
+                        )
+
+                if travel_data.get('retour'):
+                    for segment_data in travel_data['retour']:
+                        SegmentRepository.create_segment(
+                            travel.id,
+                            'return',
+                            segment_data['date'],
+                            segment_data['departureTime'],
+                            segment_data['departureLocation'],
+                            segment_data['arrivalTime'],
+                            segment_data['arrivalLocation'],
+                            segment_data['duration'],
+                            segment_data.get('logoUrl', None)
+                        )
 
                 for condition_text in travel_data['conditions']:
                     ConditionRepository.create_condition(travel.id, condition_text)
@@ -157,7 +176,7 @@ class TravelService:
 
         except IntegrityError as ie:
             db.session.rollback()
-            raise ValueError("Erreur d'intégrité dans les données fournies.") from ie
+            raise ValueError(f"Erreur d'intégrité dans les données fournies : {ie.orig}") from ie
         except Exception as e:
             db.session.rollback()
-            raise Exception("Une erreur est survenue lors de la création du voyage.") from e
+            raise Exception(f"Une erreur est survenue lors de la création du voyage : {str(e)}") from e
