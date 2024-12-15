@@ -6,7 +6,7 @@ class Segment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     travel_id = db.Column(db.Integer, db.ForeignKey('travels.id'), nullable=False)
-    segment_type = db.Column(db.String(50), nullable=False)  # 'outbound' ou 'return'
+    segment_type = db.Column(db.String(50), nullable=False)
     flight_date = db.Column(db.Date, nullable=False)
     departure_time = db.Column(db.Time, nullable=False)
     departure_location = db.Column(db.String(255), nullable=False)
