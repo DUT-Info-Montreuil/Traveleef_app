@@ -1,5 +1,11 @@
 # Traveleef App
 
+## Présentation de l'application : 
+
+Traveleef est une solution qui vous permet d'optimiser chaque aventure tout en minimisant votre empreinte carbone. 🚆✨
+
+En voyageant avec Traveleef, vous contribuerez à un avenir plus durable pour notre planète. Chaque petit geste compte, et c'est en utilisant des moyens de transport plus respectueux de l'environnement que nous pouvons faire la différence. 💪
+
 # Guide d'utilisatation 
 
 # Prérequis : voir [Guide d'installation](Guide%20d'installation.pdf)
