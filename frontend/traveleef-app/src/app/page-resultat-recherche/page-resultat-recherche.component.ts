@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule pour ngModel
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-page-resultat-recherche',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgOptimizedImage], // Inclure FormsModule ici
+  imports: [CommonModule, FormsModule, NgOptimizedImage],
   templateUrl: './page-resultat-recherche.component.html',
   styleUrls: ['./page-resultat-recherche.component.scss']
 })
@@ -19,7 +19,8 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '2.93 g de CO2 par km',
       duration: 300,
       travelClass: 'Classe économique',
-      image: 'images/Logo_Traveleef_green.png',
+      image: 'assets/LogoTexte_Traveleef_N.png',
+      link: 'https://example.com/train-madrid'
     },
     {
       destination: 'Madrid',
@@ -28,7 +29,8 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '188 g de CO2 par km',
       duration: 120,
       travelClass: 'Classe business',
-      image: 'images/Logo_Traveleef_green.png',
+      image: 'assets/LogoTexte_Traveleef_N.png',
+      link: 'https://example.com/avion-madrid'
     },
     {
       destination: 'Madrid',
@@ -37,7 +39,8 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '218 g de CO2 par km',
       duration: 480,
       travelClass: 'Classe économique',
-      image: 'images/Logo_Traveleef_green.png',
+      image: 'assets/LogoTexte_Traveleef_N.png',
+      link: 'https://example.com/bus-madrid'
     },
     {
       destination: 'Madrid',
@@ -46,7 +49,8 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '100 g de CO2 par km',
       duration: 400,
       travelClass: 'Classe économique',
-      image: 'images/Logo_Traveleef_green.png',
+      image: 'assets/LogoTexte_Traveleef_N.png',
+      link: 'https://example.com/covoiturage-madrid'
     },
     {
       destination: 'Madrid',
@@ -55,27 +59,31 @@ export class PageResultatRechercheComponent {
       carbonFootprint: '300 g de CO2 par km',
       duration: 600,
       travelClass: 'Classe business',
-      image: 'images/Logo_Traveleef_green.png',
-    },
+      image: 'assets/LogoTexte_Traveleef_N.png',
+      link: 'https://example.com/marin-madrid'
+    }
   ];
 
   // Filtres sélectionnés
   selectedClass: string = 'Toutes les classes';
   selectedTransport: string[] = [];
-  sortCriteria: string = ''; // Critère de tri
+  priceRange = { min: 0, max: 200 };
+  sortCriteria: string = 'eco';
 
-  // Méthode pour appliquer les filtres et le tri
+  // Méthode pour appliquer les filtres
   getFilteredResults() {
     let filteredResults = this.results.filter((result) => {
-      // Filtrer par classe
       const classFilter = this.selectedClass === 'Toutes les classes' || result.travelClass === this.selectedClass;
+      const transportFilter = this.selectedTransport.length === 0 || this.selectedTransport.includes(result.transport);
 
-      // Filtrer par moyen de transport
-      const transportFilter =
-        this.selectedTransport.length === 0 || this.selectedTransport.includes(result.transport);
+      // Gestion des valeurs min et max
+      const minPrice = this.priceRange.min != null ? this.priceRange.min : 0;
+      const maxPrice = this.priceRange.max != null ? this.priceRange.max : Number.MAX_VALUE;
+      const priceFilter = result.price >= minPrice && result.price <= maxPrice;
 
-      return classFilter && transportFilter;
+      return classFilter && transportFilter && priceFilter;
     });
+
 
     // Appliquer le tri
     if (this.sortCriteria === 'eco') {
@@ -89,9 +97,9 @@ export class PageResultatRechercheComponent {
     return filteredResults;
   }
 
-  // Méthode pour trier les résultats
+  // Méthode pour trier
   sortBy(criteria: string) {
-    this.sortCriteria = criteria; // Enregistre le critère sélectionné
+    this.sortCriteria = criteria;
   }
 
   // Méthode pour gérer les changements des filtres

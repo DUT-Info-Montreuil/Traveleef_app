@@ -1,5 +1,4 @@
 from sqlalchemy.exc import IntegrityError
-
 from domain.repositories.condition_repository import ConditionRepository
 from domain.repositories.emission_repository import EmissionRepository
 from domain.repositories.segment_repository import SegmentRepository
@@ -128,7 +127,8 @@ class TravelService:
                     travel_data['travelInfo'],
                     travel_data.get('partner_url', ''),
                     travel_data.get('priceOutbound', None),
-                    travel_data.get('priceRoundTrip', None)
+                    travel_data.get('priceRoundTrip', None),
+                    travel_data.get('travel_type')
                 )
 
                 EmissionRepository.create_emission(
