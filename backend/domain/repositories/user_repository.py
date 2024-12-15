@@ -1,52 +1,24 @@
 from domain.entities.user import User
+from infra.db.database import db
+from sqlalchemy.exc import SQLAlchemyError
 
 
 class UserRepository:
 
-    def __init__(self, database):
-        self.database = database
-
-    def create_user(self, user: User) -> User:
-        conn = self.database.connect()
+    @staticmethod
+    def create_user(user: User) -> User:
         try:
-            query = """
-               INSERT INTO users (first_name, last_name, password, email, role)
-               VALUES (%s, %s, %s, %s, %s)
-               RETURNING id;
-               """
-            with conn.cursor() as cursor:
-                cursor.execute(query, (user.first_name, user.last_name, user.password, user.email, user.role))
-                user_id = cursor.fetchone()[0]
-                conn.commit()
-
-            user.id = user_id
+            db.session.add(user)
+            db.session.commit()
             return user
-        except Exception as e:
-            conn.rollback()
-            raise f"Error creating user: {e}"
-        finally:
-            self.database.close_connection()
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            raise Exception(f"Error creating user: {e}")
 
-    def find_user_by_email(self, email: str) -> User:
-        conn = self.database.connect()
+    @staticmethod
+    def find_user_by_email(email: str) -> User:
+
         try:
-            query = """
-                SELECT * FROM users WHERE email = (%s);
-            """
-            with conn.cursor() as cursor:
-                cursor.execute(query, (email,))
-                result = cursor.fetchone()
-                if result:
-                    return User(
-                        id=result[0],
-                        first_name=result[1],
-                        last_name=result[2],
-                        email=result[3],
-                        password=result[4],
-                        role=result[5]
-                    )
-                return None
-        except Exception as e:
-            raise f"Error user does exist : {e}"
-        finally:
-            self.database.close_connection()
+            return User.query.filter_by(email=email).first()
+        except SQLAlchemyError as e:
+            raise Exception(f"Error fetching user by email: {e}")
