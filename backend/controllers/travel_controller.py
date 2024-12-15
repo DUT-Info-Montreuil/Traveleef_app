@@ -53,11 +53,14 @@ def search_flights():
         'adults': dto['adults'],
         'children': dto['children'],
         'infants': dto['infants'],
-        'api_key': ''
+        'api_key': '7f25e8efc591b9c095d300192a582b0ba3d1b1862732c410118ea66bf8bca216'
     }
 
     if dto['trip_type'] == 'roundTrip' and 'return_date' in dto:
         params['return_date'] = dto['return_date']
+
+    if dto['trip_type'] == 'oneWay' and 'return_date' in params:
+        del params['return_date']
 
     response = requests.get(base_url, params=params)
 

@@ -59,7 +59,7 @@ export class SearchBarComponent {
         infants: this.nombreVoyageurs.bebe
       };
       console.log(apiData);
-      this.router.navigate(['/resultats'], { state: { data: apiData } });
+      this.router.navigate(['/results'], { state: { data: apiData } });
     } else {
       console.log("Formulaire invalide");
     }

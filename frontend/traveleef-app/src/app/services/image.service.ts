@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class ImageService {
   private apiUrl = 'https://api.unsplash.com/search/photos';
-  private accessKey = '';
+  private accessKey = 'acZQZOe705b0x7CImO81lkmT3Too0elsgk305qiszK4';
 
   constructor(private http: HttpClient) { }
 
