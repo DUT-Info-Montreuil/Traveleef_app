@@ -9,8 +9,8 @@
       <div class="custom-select">
         <select id="class-select" [(ngModel)]="selectedClass">
           <option>Toutes les classes</option>
-          <option>Classe économique</option>
-          <option>Classe business</option>
+          <option>Economy</option>
+          <option>Business</option>
         </select>
       </div>
     </div>
@@ -24,7 +24,7 @@
           [(ngModel)]="priceRange.min"
           placeholder="Min"
           min="0"
-          max="200"
+          max="5000"
         />
         <span> - </span>
         <input
@@ -32,7 +32,7 @@
           [(ngModel)]="priceRange.max"
           placeholder="Max"
           min="0"
-          max="200"
+          max="5000"
         />
       </div>
     </div>
@@ -91,25 +91,33 @@
       </button>
     </div>
 
-    <div class="result-list">
+    <div class="result-list" *ngIf="bestFlights.length > 0; else noResults">
       <a
         class="result-link"
-        [href]="result.link"
-        *ngFor="let result of getFilteredResults()"
-        target="_blank"
+        *ngFor="let flight of getFilteredResults()"
+        [href]="'/details/' + flight.airline"
       >
         <div class="result-card">
-          <img [src]="result.image" [alt]="result.destination" />
+          <img [src]="flight.airline_logo" [alt]="flight.airline" />
           <div class="result-info">
-            <h3>Voyage à {{ result.destination }}</h3>
-            <p>Prix : <strong>{{ result.price }} €</strong></p>
-            <p>Moyen de transport : {{ result.transport }}</p>
-            <p>Durée : <strong>{{ result.duration / 60 | number:'1.0-0' }} heures</strong></p>
-            <p>Classe : <strong>{{ result.travelClass }}</strong></p>
-            <p>Empreinte carbone : <strong>{{ result.carbonFootprint }}</strong></p>
+            <h3>{{ flight.airline }}</h3>
+            <p>Prix : <strong>{{ flight.price }} €</strong></p>
+            <p>Durée : <strong>{{ flight.total_duration / 60 | number:'1.0-0' }} heures</strong></p>
+            <p>Classe : <strong>{{ flight.flights[0]?.travel_class }}</strong></p>
+            <p *ngIf="flight.carbon_emissions">
+              Empreinte carbone :
+              <strong>{{ flight.carbon_emissions.this_flight }} kg</strong>
+              <span *ngIf="flight.carbon_emissions.difference_percent" class="badge bg-warning">
+                ({{ flight.carbon_emissions.difference_percent }}%)
+              </span>
+            </p>
           </div>
         </div>
       </a>
     </div>
   </main>
+
+  <ng-template #noResults>
+    <p class="text-center text-muted">Aucun résultat trouvé pour cette recherche.</p>
+  </ng-template>
 </div>
