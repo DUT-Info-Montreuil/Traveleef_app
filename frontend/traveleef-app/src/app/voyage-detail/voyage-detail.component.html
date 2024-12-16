@@ -1,11 +1,13 @@
+<app-search-bar></app-search-bar>
+
 <div class="voyage-detail-container">
   <!-- Titre du trajet -->
   <div class="trip-title">
-    <div class="trip-title-text">{{ voyageData.travelInfo }}</div>
+    <div class="trip-title-text">Prix du voyage : {{ flight.price }} €</div>
   </div>
 
   <!-- Informations sur les émissions -->
-  <div class="emissions-card">
+  <div class="emissions-card" *ngIf="emissions.this_flight !== undefined">
     <div class="emissions-icon">
       <div class="emissions-icon-inner"></div>
     </div>
@@ -20,11 +22,11 @@
     </div>
     <div class="emissions-info">
       <span>Ce trajet : </span>
-      <span class="emissions-highlight">{{ voyageData.emissions.aller }} kg CO2e</span>
+      <span class="emissions-highlight">{{ emissions.this_flight / 1000 }} kg CO2e</span>
     </div>
     <div class="emissions-comparison">
       <span>Habituelles pour cet itinéraire : </span>
-      <span class="emissions-highlight">{{ voyageData.emissions.retour }} kg CO2</span>
+      <span class="emissions-highlight">{{ emissions.typical_for_this_route / 1000 }} kg CO2e</span>
     </div>
     <div class="emissions-details">
       <span>
@@ -34,29 +36,70 @@
       <span class="details-link">En savoir plus sur les estimations d'émissions.</span>
     </div>
     <div class="emissions-percentage">
-      <span>{{ voyageData.emissions.pourcentage }}% </span>
+      <span>{{ emissions.difference_percent }}% </span>
       <span>moins élevées que l’itinéraire habituel</span>
     </div>
   </div>
 
   <!-- Section des trajets aller et retour -->
-  <div class="flights-section">
-    <div class="flight-card" *ngFor="let flight of voyageData.aller">
-      <img [src]="flight.logoUrl" alt="Logo Transport" class="transport-logo" />
-      <h3>Trajet Aller : {{ flight.date }}</h3>
-      <p>{{ flight.departureTime }} - {{ flight.departureLocation }}</p>
-      <p>{{ flight.arrivalTime }} - {{ flight.arrivalLocation }}</p>
-      <p class="duration">Durée : {{ flight.duration }}</p>
-      <a [href]="flight.partnerUrl" target="_blank" class="book-button">Réserver</a>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <!-- Vols aller -->
+      <div class="col-md-6 col-lg-4 mb-4" *ngFor="let flight of allerFlights">
+        <div class="card shadow">
+          <img [src]="flight.airline_logo" alt="Logo Transport" class="card-img-top p-3" />
+          <div class="card-body">
+            <h5 class="card-title">Trajet Aller : {{ flight.departure_airport.time | date: 'short' }}</h5>
+            <p class="card-text">
+              {{ flight.departure_airport.time | date: 'short' }} - {{ flight.departure_airport.name }}
+            </p>
+            <p class="card-text">
+              {{ flight.arrival_airport.time | date: 'short' }} - {{ flight.arrival_airport.name }}
+            </p>
+            <p class="duration text-muted">Durée : {{ flight.duration / 60 }}h {{ flight.duration % 60 }}m</p>
+            <a [href]="'#'" class="btn btn-primary w-100">Réserver</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vols retour -->
+      <div class="col-md-6 col-lg-4 mb-4" *ngFor="let flight of retourFlights">
+        <div class="card shadow">
+          <img [src]="flight.airline_logo" alt="Logo Transport" class="card-img-top p-3" />
+          <div class="card-body">
+            <h5 class="card-title">Trajet Retour : {{ flight.departure_airport.time | date: 'short' }}</h5>
+            <p class="card-text">
+              {{ flight.departure_airport.time | date: 'short' }} - {{ flight.departure_airport.name }}
+            </p>
+            <p class="card-text">
+              {{ flight.arrival_airport.time | date: 'short' }} - {{ flight.arrival_airport.name }}
+            </p>
+            <p class="duration text-muted">Durée : {{ flight.duration / 60 }}h {{ flight.duration % 60 }}m</p>
+            <a [href]="'#'" class="btn btn-primary w-100">Réserver</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="flight-card" *ngFor="let flight of voyageData.retour">
-      <img [src]="flight.logoUrl" alt="Logo Transport" class="transport-logo" />
-      <h3>Trajet Retour : {{ flight.date }}</h3>
-      <p>{{ flight.departureTime }} - {{ flight.departureLocation }}</p>
-      <p>{{ flight.arrivalTime }} - {{ flight.arrivalLocation }}</p>
-      <p class="duration">Durée : {{ flight.duration }}</p>
-      <a [href]="flight.partnerUrl" target="_blank" class="book-button">Réserver</a>
+    <!-- Informations sur les aéroports -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <h2 class="text-center">Aéroports</h2>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h3>Aéroport de départ</h3>
+          <p><strong>{{ flight.flights[0]?.departure_airport.name }}</strong></p>
+          <p>Heure de départ : {{ flight.flights[0]?.departure_airport.time | date: 'short' }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h3>Aéroport d'arrivée</h3>
+          <p><strong>{{ flight.flights[0]?.arrival_airport.name }}</strong></p>
+          <p>Heure d'arrivée : {{ flight.flights[0]?.arrival_airport.time | date: 'short' }}</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -65,20 +108,20 @@
     <div class="info-card">
       <h2>Conditions de voyage</h2>
       <ul>
-        <li *ngFor="let condition of voyageData.conditions">{{ condition }}</li>
+        <li *ngFor="let condition of flight.extensions">{{ condition }}</li>
       </ul>
     </div>
     <div class="info-card">
       <h2>Services disponibles</h2>
       <ul>
-        <li *ngFor="let service of voyageData.services">{{ service }}</li>
+        <li *ngFor="let service of flight.extensions">{{ service }}</li>
       </ul>
     </div>
   </div>
 
   <!-- Boutons d'action -->
   <div class="action-buttons">
-    <button class="finalize-reservation-button">Réservation terminée</button>
+    <a class="finalize-reservation-button" href="https://www.booking.com/index.fr.html">Réservation</a>
     <button class="share-button">Partager</button>
   </div>
 </div>

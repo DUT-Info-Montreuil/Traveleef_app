@@ -215,4 +215,117 @@
       color: black;
     }
   }
+
+  .flights-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 40px 0;
+  }
+
+  .flight-card {
+    width: 48%;
+    background: #f9f9f9;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    .transport-logo {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    .duration {
+      font-size: 18px;
+      font-weight: bold;
+      color: #406a18;
+    }
+
+    .book-button {
+      background-color: #2ca9c6;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .airport-info {
+    width: 100%;
+    background: #c9ddb0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 40px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+      color: #406a18;
+      margin-bottom: 20px;
+    }
+
+    .airport-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .departure, .arrival {
+        width: 48%;
+        background: #b9c9aa;
+        border-radius: 16px;
+        padding: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          color: #406a18;
+        }
+
+        p {
+          font-size: 16px;
+          color: #555;
+        }
+
+        strong {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .flight-card, .airport-info {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
 }

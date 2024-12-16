@@ -1,3 +1,5 @@
+<app-search-bar></app-search-bar>
+
 <div class="search-results-page">
   <!-- Menu des filtres -->
   <aside class="filters">
@@ -95,7 +97,8 @@
       <a
         class="result-link"
         *ngFor="let flight of getFilteredResults()"
-        [href]="'/details/' + flight.airline"
+        [routerLink]="['/voyage-detail']"
+        [state]="{ flight: flight }"
       >
         <div class="result-card">
           <img [src]="flight.airline_logo" [alt]="flight.airline" />

@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {TravelService} from "../services/travel.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
+import {SearchBarComponent} from "../shared/components/search-bar/search-bar.component";
 
 @Component({
   selector: 'app-page-resultat-recherche',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgOptimizedImage],
+  imports: [CommonModule, FormsModule, NgOptimizedImage, RouterLink, SearchBarComponent],
   templateUrl: './page-resultat-recherche.component.html',
   styleUrls: ['./page-resultat-recherche.component.scss']
 })
@@ -54,11 +55,8 @@ export class PageResultatRechercheComponent implements OnInit {
   sortCriteria: string = 'eco';
 
   getFilteredResults(): any[] {
-    console.log("Début des filtres");
-    console.log("Liste des vols initiale :", this.bestFlights);
 
     if (!this.bestFlights || this.bestFlights.length === 0) {
-      console.log("Aucun vol à filtrer");
       return [];
     }
 
@@ -84,8 +82,6 @@ export class PageResultatRechercheComponent implements OnInit {
       return matchesPrice && matchesClass && matchesTransport;
     });
 
-    console.log("Vols filtrés :", filteredFlights);
-
     const sortedFlights = filteredFlights.sort((a, b) => {
       if (this.sortCriteria === 'price') {
         return a.price - b.price;
@@ -98,7 +94,6 @@ export class PageResultatRechercheComponent implements OnInit {
       return 0;
     });
 
-    console.log("Vols triés :", sortedFlights);
     return sortedFlights;
   }
 
