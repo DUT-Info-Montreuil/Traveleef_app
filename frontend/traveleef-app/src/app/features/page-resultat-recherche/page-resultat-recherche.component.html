@@ -1,0 +1,126 @@
+<app-search-bar></app-search-bar>
+
+<div class="search-results-page">
+  <!-- Menu des filtres -->
+  <aside class="filters">
+    <h2>Filtres :</h2>
+
+    <!-- Filtre : Classe -->
+    <div class="filter-group">
+      <label for="class-select">Choisissez une classe</label>
+      <div class="custom-select">
+        <select id="class-select" [(ngModel)]="selectedClass">
+          <option>Toutes les classes</option>
+          <option>Economy</option>
+          <option>Business</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Filtre : Prix -->
+    <div class="filter-group">
+      <label>Prix :</label>
+      <div class="price-filter">
+        <input
+          type="number"
+          [(ngModel)]="priceRange.min"
+          placeholder="Min"
+          min="0"
+          max="5000"
+        />
+        <span> - </span>
+        <input
+          type="number"
+          [(ngModel)]="priceRange.max"
+          placeholder="Max"
+          min="0"
+          max="5000"
+        />
+      </div>
+    </div>
+
+    <!-- Filtre : Moyens de transport -->
+    <div class="filter-group">
+      <label>Moyen de transport :</label>
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" id="avion" (change)="toggleTransportFilter('Avion')" />
+          <label for="avion">Avion ✈️</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="train" (change)="toggleTransportFilter('Train')" />
+          <label for="train">Train 🚆</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="bus" (change)="toggleTransportFilter('Bus')" />
+          <label for="bus">Bus / Car 🚌</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="covoiturage" (change)="toggleTransportFilter('Covoiturage')" />
+          <label for="covoiturage">Covoiturage 🚗</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="marin" (change)="toggleTransportFilter('Marin')" />
+          <label for="marin">Marin ⛴️</label>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Section des résultats -->
+  <main class="results">
+    <div class="tabs">
+      <button
+        class="tab"
+        [ngClass]="{ 'active': sortCriteria === 'eco' }"
+        (click)="sortBy('eco')"
+      >
+        Les plus écolo
+      </button>
+      <button
+        class="tab"
+        [ngClass]="{ 'active': sortCriteria === 'price' }"
+        (click)="sortBy('price')"
+      >
+        Les moins chers
+      </button>
+      <button
+        class="tab"
+        [ngClass]="{ 'active': sortCriteria === 'duration' }"
+        (click)="sortBy('duration')"
+      >
+        Les plus rapides
+      </button>
+    </div>
+
+    <div class="result-list" *ngIf="bestFlights.length > 0; else noResults">
+      <a
+        class="result-link"
+        *ngFor="let flight of getFilteredResults()"
+        [routerLink]="['/voyage-detail']"
+        [state]="{ flight: flight }"
+      >
+        <div class="result-card">
+          <img [src]="flight.airline_logo" [alt]="flight.airline" />
+          <div class="result-info">
+            <h3>{{ flight.airline }}</h3>
+            <p>Prix : <strong>{{ flight.price }} €</strong></p>
+            <p>Durée : <strong>{{ flight.total_duration / 60 | number:'1.0-0' }} heures</strong></p>
+            <p>Classe : <strong>{{ flight.flights[0]?.travel_class }}</strong></p>
+            <p *ngIf="flight.carbon_emissions">
+              Empreinte carbone :
+              <strong>{{ flight.carbon_emissions.this_flight }} kg</strong>
+              <span *ngIf="flight.carbon_emissions.difference_percent" class="badge bg-warning">
+                ({{ flight.carbon_emissions.difference_percent }}%)
+              </span>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <ng-template #noResults>
+    <p class="text-center text-muted">Aucun résultat trouvé pour cette recherche.</p>
+  </ng-template>
+</div>

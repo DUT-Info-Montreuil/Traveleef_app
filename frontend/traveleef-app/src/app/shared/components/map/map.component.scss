@@ -1,0 +1,11 @@
+#map {
+  height: 600px;
+  width: 600px;
+}
+
+.ol-attribution {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}

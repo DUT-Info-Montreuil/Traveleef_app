@@ -1,0 +1,10 @@
+flask
+flask-cors
+flask-expects-json
+python-dotenv
+flask-jwt-extended
+psycopg[binary]
+bcrypt
+Flask-SQLAlchemy
+SQLAlchemy
+requests

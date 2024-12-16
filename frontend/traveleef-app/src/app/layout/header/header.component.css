@@ -1,0 +1,65 @@
+/* Conteneur principal */
+.header-container {
+  width: 100%;
+  padding: 2% 3%;
+  background-color: #C9DDB0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 150px; /* Taille ajustée pour petits écrans */
+  height: auto;
+}
+
+/* Conteneur des boutons */
+.buttons-container,
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Boutons */
+.btn-primary {
+  padding: 8px 16px;
+  background-color: #4CD0BD;
+  color: black;
+  font-size: 14px; /* Police réduite pour petits écrans */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px rgba(183, 203, 156, 0.73);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #3bb9a3;
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  /* Aligner les boutons en dessous du logo sur mobile */
+  .buttons-container,
+  .user-info {
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .logo-img {
+    width: 100px;
+  }
+}

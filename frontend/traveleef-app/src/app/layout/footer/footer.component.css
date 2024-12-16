@@ -1,0 +1,63 @@
+/* Conteneur principal du footer */
+.footer-container {
+  margin-top: 50px;
+  width: 100%;
+  background-color: #C9DDB0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo du footer */
+.footer-logo img {
+  max-width: 300px;
+  height: auto;
+}
+
+/* Section Rejoignez-nous */
+.join-us {
+  color: #2CA9C6;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.join-us .line {
+  width: 80px;
+  height: 0;
+  border-top: 5px solid #2CA9C6;
+  transform: rotate(180deg);
+}
+
+.join-us span {
+  margin: 0 10px;
+}
+
+/* Icônes des réseaux sociaux */
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-color: #2CA9C6;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(183, 203, 156, 0.73);
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  transition: background-color 0.3s;
+}
+
+.icon:hover {
+  background-color: #3bb9a3;
+}

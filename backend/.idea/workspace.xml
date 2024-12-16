@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b13f1fa6-692f-4342-8834-57079dd604c4" name="Changes" comment="Fonction de recherche google flight avec un api externe serpapi.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/travel_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/travel_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db_password" beforeDir="false" afterPath="$PROJECT_DIR$/../db_password" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/page-resultat-recherche/page-resultat-recherche.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/page-resultat-recherche/page-resultat-recherche.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/page-resultat-recherche/page-resultat-recherche.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/page-resultat-recherche/page-resultat-recherche.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/services/image.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/services/image.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/shared/components/search-bar/search-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/traveleef-app/src/app/shared/components/search-bar/search-bar.component.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2qCUvzoy43DpQ0EhOXHmb380kyg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "dev",
+    "last_opened_file_path": "D:/sae/Traveleef_app/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\sae\Traveleef_app\backend\infra\db" />
+      <recent name="D:\sae\Traveleef_app\backend\domain\kernel" />
+      <recent name="D:\sae\Traveleef_app\backend" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="backend" type="PythonConfigurationType" factoryName="Python">
+      <module name="backend" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b13f1fa6-692f-4342-8834-57079dd604c4" name="Changes" comment="" />
+      <created>1734166286212</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734166286212</updated>
+      <workItem from="1734166287520" duration="743000" />
+      <workItem from="1734179712934" duration="10750000" />
+      <workItem from="1734206840464" duration="3824000" />
+      <workItem from="1734258280468" duration="24025000" />
+    </task>
+    <task id="LOCAL-00001" summary="Ajout de la dépendance Flask-SQLAlchemy un ORM sql pour simplifié l'écriture des requetes.">
+      <option name="closed" value="true" />
+      <created>1734182670605</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734182670605</updated>
+    </task>
+    <task id="LOCAL-00002" summary="intégration de la configuration de sql alchemy">
+      <option name="closed" value="true" />
+      <created>1734182738871</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734182738871</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Dépendance SqlAlchemy">
+      <option name="closed" value="true" />
+      <created>1734260102213</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734260102213</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Entité des différentes class pour pouvoir créer un offre de voyage.">
+      <option name="closed" value="true" />
+      <created>1734260135015</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734260135015</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Les différentes class repository qui font l'interraction avec la base de donnée.">
+      <option name="closed" value="true" />
+      <created>1734260164825</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734260164825</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Class travel service, il possède des fonctions avec la logique métier pour créer un voyage, retourner un voyage en détails par id et retourner une liste de voyage en détails.">
+      <option name="closed" value="true" />
+      <created>1734260211227</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1734260211227</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Refactor de user pour le réadapter pour SqlAlchemy.">
+      <option name="closed" value="true" />
+      <created>1734260255141</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734260255141</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Correction et ajout des champs manquant">
+      <option name="closed" value="true" />
+      <created>1734263786359</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734263786359</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fonctionnalité de recherche d'un voyage avec plusieurs paramètre (lieu de départ, lieu d'arrivée, date)">
+      <option name="closed" value="true" />
+      <created>1734276541886</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734276541886</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fonction de recherche google flight avec un api externe serpapi.">
+      <option name="closed" value="true" />
+      <created>1734288241748</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734288241749</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout de la dépendance Flask-SQLAlchemy un ORM sql pour simplifié l'écriture des requetes." />
+    <MESSAGE value="intégration de la configuration de sql alchemy" />
+    <MESSAGE value="Dépendance SqlAlchemy" />
+    <MESSAGE value="Entité des différentes class pour pouvoir créer un offre de voyage." />
+    <MESSAGE value="Les différentes class repository qui font l'interraction avec la base de donnée." />
+    <MESSAGE value="Class travel service, il possède des fonctions avec la logique métier pour créer un voyage, retourner un voyage en détails par id et retourner une liste de voyage en détails." />
+    <MESSAGE value="Refactor de user pour le réadapter pour SqlAlchemy." />
+    <MESSAGE value="Correction et ajout des champs manquant" />
+    <MESSAGE value="Fonctionnalité de recherche d'un voyage avec plusieurs paramètre (lieu de départ, lieu d'arrivée, date)" />
+    <MESSAGE value="Fonction de recherche google flight avec un api externe serpapi." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fonction de recherche google flight avec un api externe serpapi." />
+  </component>
+</project>

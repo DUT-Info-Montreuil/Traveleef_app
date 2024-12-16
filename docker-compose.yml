@@ -1,0 +1,50 @@
+services:
+  proxy:
+    build: ./frontend
+    depends_on:
+      - app
+    ports:
+      - "4200:4200"
+    networks:
+      - frontend
+
+  app:
+    build: ./backend
+    # Port temporaire
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    secrets:
+      - db_password  
+    networks: 
+      - frontend
+      - backend
+
+  db:
+    image: postgres:latest
+    container_name: traveleef_bd
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: sae
+      POSTGRES_DB: traveleef
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password  
+    secrets:
+      - db_password  
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge  
+  backend:
+    driver: bridge
+
+secrets:
+  db_password:
+    file: ./db_password
+
+volumes:
+  db_data: {}

@@ -1,0 +1,142 @@
+<div class="container py-4 d-flex justify-content-center">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+  <div class="search-bar p-4 rounded d-flex align-items-center" style="gap: 10px; width: auto; flex-wrap: nowrap; justify-content: center;">
+
+    <div class="input-container" style="position: relative; width: max-content;">
+      <input
+        type="text"
+        class="form-control border-0 fst-italic shadow"
+        formControlName="departureId"
+        placeholder="Lieu de départ"
+        style="max-width: 250px; padding-left: 40px;"
+      />
+      <i class="bi bi-luggage-fill"
+         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #000;">
+      </i>
+    </div>
+
+    <div class="input-container" style="position: relative; width: max-content;">
+      <input
+        type="text"
+        class="form-control border-0 fst-italic shadow"
+        formControlName="arrivalId"
+        placeholder="Lieu d'arrivée"
+        style="max-width: 250px; padding-left: 40px;"
+      />
+      <i class="bi bi-luggage-fill"
+         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #000;">
+      </i>
+    </div>
+
+    <div class="d-flex flex-column mb-0">
+      <div class="input-group mb-2">
+        <input type="date" class="form-control border-0 shadow" formControlName="outboundDate" placeholder="Date aller" style="width: 160px;" />
+      </div>
+      <div class="input-group">
+        <input type="date" class="form-control border-0 shadow" formControlName="returnDate" placeholder="Date retour" style="width: 160px;" />
+      </div>
+    </div>
+
+    <div class="d-flex flex-column mb-0">
+      <div class="form-check mb-2">
+        <input class="form-check-input shadow" type="radio" name="tripType" formControlName="tripType" id="oneWay" value="oneWay" />
+        <label class="form-check-label" for="oneWay">Aller simple</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input shadow" type="radio" name="tripType" formControlName="tripType" id="roundTrip" value="roundTrip" />
+        <label class="form-check-label" for="roundTrip">Aller retour</label>
+      </div>
+    </div>
+
+    <div class="dropdown input-container">
+      <button
+        class="btn btn-light dropdown-toggle d-flex align-items-center shadow"
+        type="button"
+        id="dropdownVoyageurs"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        style="padding-left: 2rem;"
+        (click)="$event.stopPropagation()"
+      >
+        <i
+          class="bi bi-person-add"
+          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 1.2rem;"
+        ></i>
+        {{ nombreVoyageurs.adulte + nombreVoyageurs.enfant + nombreVoyageurs.bebe }} Voyageur(s)
+      </button>
+      <ul class="dropdown-menu bg-light p-3 shadow" aria-labelledby="dropdownVoyageurs" style="min-width: 200px;">
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column">
+            <span><strong>Adulte</strong></span>
+            <small class="text-muted">12 ans et plus</small>
+          </div>
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-sm btn-outline-secondary me-2"
+              (click)="modifierNombreVoyageurs('adulte', -1); $event.stopPropagation()"
+              [disabled]="nombreVoyageurs.adulte <= 0"
+            >
+              -
+            </button>
+            <span class="fw-bold">{{ nombreVoyageurs.adulte }}</span>
+            <button
+              class="btn btn-sm btn-outline-secondary ms-2"
+              (click)="modifierNombreVoyageurs('adulte', 1); $event.stopPropagation()"
+            >
+              +
+            </button>
+          </div>
+        </li>
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column">
+            <span><strong>Enfant</strong></span>
+            <small class="text-muted">2 à 11 ans</small>
+          </div>
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-sm btn-outline-secondary me-2"
+              (click)="modifierNombreVoyageurs('enfant', -1); $event.stopPropagation()"
+              [disabled]="nombreVoyageurs.enfant <= 0"
+            >
+              -
+            </button>
+            <span class="fw-bold">{{ nombreVoyageurs.enfant }}</span>
+            <button
+              class="btn btn-sm btn-outline-secondary ms-2"
+              (click)="modifierNombreVoyageurs('enfant', 1); $event.stopPropagation()"
+            >
+              +
+            </button>
+          </div>
+        </li>
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column">
+            <span><strong>Bébé</strong></span>
+            <small class="text-muted">- de 2 ans</small>
+          </div>
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-sm btn-outline-secondary me-2"
+              (click)="modifierNombreVoyageurs('bebe', -1); $event.stopPropagation()"
+              [disabled]="nombreVoyageurs.bebe <= 0"
+            >
+              -
+            </button>
+            <span class="fw-bold">{{ nombreVoyageurs.bebe }}</span>
+            <button
+              class="btn btn-sm btn-outline-secondary ms-2"
+              (click)="modifierNombreVoyageurs('bebe', 1); $event.stopPropagation()"
+            >
+              +
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <button class="btn btn-primary text-dark fw-bold" [disabled]="searchForm.invalid">Rechercher</button>
+    </div>
+  </div>
+  </form>
+</div>
