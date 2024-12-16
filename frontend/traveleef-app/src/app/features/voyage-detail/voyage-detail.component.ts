@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {CurrencyPipe, DatePipe, NgForOf, NgIf} from "@angular/common";
-import {SearchBarComponent} from "../shared/components/search-bar/search-bar.component";
+import {SearchBarComponent} from "../../shared/components/search-bar/search-bar.component";
 
 @Component({
   selector: 'app-voyage-detail',

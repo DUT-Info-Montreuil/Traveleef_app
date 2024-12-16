@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
-import { AuthService } from '../service/authentification.service';// Importer le service d'authentification
+import { AuthService } from '../../services/authentification.service';// Importer le service d'authentification
 
 @Component({
   selector: 'app-inscription',
@@ -49,7 +49,7 @@ onSubmit() {
       password: formValue.password,
       role: 'user'  // Prendre le rôle sélectionné ou 'user' par défaut
     };
-    
+
     console.log(utilisateur);
 
     this.authService.inscription(utilisateur).subscribe({

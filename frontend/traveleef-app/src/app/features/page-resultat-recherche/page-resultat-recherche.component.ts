@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {TravelService} from "../services/travel.service";
+import {TravelService} from "../../services/travel.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {SearchBarComponent} from "../shared/components/search-bar/search-bar.component";
+import {SearchBarComponent} from "../../shared/components/search-bar/search-bar.component";
 
 @Component({
   selector: 'app-page-resultat-recherche',

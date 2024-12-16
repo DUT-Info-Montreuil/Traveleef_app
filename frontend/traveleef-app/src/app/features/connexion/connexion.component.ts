@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/authentification.service';
+import { AuthService } from '../../services/authentification.service';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -19,7 +19,7 @@ export class ConnexionComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  
+
   seConnecter(): void {
     //console.log('Données envoyées :', this.credentials);
 
